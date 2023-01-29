@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+import markdown2
 from . import util
 
 
@@ -8,12 +8,14 @@ def index(request):
         "entries": util.list_entries()
     })
 
-def article(request, title):
-    
-    # Check if the title provided matches with one of the articles (I lowercase each article name to avoid discrepancies)
-    if title.lower() in list(map(str.lower, util.list_entries())):
+def article(request, title): 
+    entry = util.get_entry(title)
+
+    # Check if the entry exists
+    if entry:
         return render(request, "encyclopedia/article.html", {
-            "title": title
+            "title": title,
+            "content": markdown2.markdown(entry)
         })
     else:
         return render(request, "encyclopedia/404.html")

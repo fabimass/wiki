@@ -5,8 +5,5 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ title }}</h1>
-
-    <span>Here should be the content...</span>
-
+    {{ content |safe }}
 {% endblock %}
