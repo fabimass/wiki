@@ -5,13 +5,21 @@
 {% endblock %}
 
 {% block body %}
-    <h1>All Pages</h1>
+    <h1>
+        {% if search %}
+            Search Results
+        {% else %}
+            All Pages
+        {% endif %}
+    </h1>
 
     <ul>
         {% for entry in entries %}
             <li>
                 <a href="{% url 'article' entry %}">{{ entry }}</a>
             </li>
+        {% empty %}
+            No entries found...
         {% endfor %}
     </ul>
 {% endblock %}
