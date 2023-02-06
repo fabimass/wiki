@@ -8,7 +8,7 @@ import random as rand
 from . import util
 
 class EntryForm(forms.Form):
-    entry = forms.CharField(label="Title", required=True)
+    entry = forms.CharField(label="Title", required=True, widget=forms.TextInput(attrs={'autocomplete':'off'}))
     content = forms.CharField(label="", widget=forms.Textarea, required=True)
 
 
